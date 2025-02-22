@@ -1,0 +1,25 @@
+_BASE_: referring_R50.yaml
+SOLVER:
+  CHECKPOINT_PERIOD: 200000
+MODEL:
+  META_ARCHITECTURE: "RIS_wacv25"
+  SEM_SEG_HEAD:
+    DEFORMABLE_TRANSFORMER_ENCODER_IN_FEATURES: ["p2", "p3", "p4"] # 同じ名前のinstanceが立てないdetectron2のconfig仕様のため糞実装
+    IN_FEATURES: ["p2", "p3", "p4"]
+  PIXEL_MEAN: [123.675, 116.280, 103.530]
+  PIXEL_STD: [58.395, 57.120, 57.375]
+
+# 書き加えた。
+DATASETS:
+  TRAIN: ("refcocog_umd_train",)
+  TEST: ("refcocog_umd_val",)
+INPUT:
+  IMAGE_SIZE: 1024
+
+SOLVER:
+  STEPS: (60000, 90000)
+  GAMMA: 0.1
+  MAX_ITER: 100000
+  BASE_LR: 0.0005
+DATALOADER:
+  NUM_WORKERS: 16

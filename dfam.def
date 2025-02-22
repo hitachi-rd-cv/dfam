@@ -1,0 +1,40 @@
+Bootstrap: docker
+From: pytorch/pytorch:2.3.1-cuda11.8-cudnn8-devel
+
+%labels
+    Author Koichiro Ito
+    Version v1.0
+
+%post
+    apt -y update && apt -y upgrade
+    apt install -y build-essential curl wget git
+    set -eux && pip install --upgrade pip
+    pip install scipy opencv-python-headless timm einops einops-exts scikit-learn wheel scikit-image matplotlib imageio pillow
+    pip install transformers==4.29.0
+    python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+    pip install git+https://github.com/openai/CLIP.git
+    git clone https://github.com/facebookresearch/Mask2Former /opt/Mask2Former/
+    cd /opt/Mask2Former/mask2former/modeling/pixel_decoder/ops
+    python setup.py build install
+    rm -rf /opt/Mask2Former
+
+   
+    
+
+%environment
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    
+    
+%runscript
+    echo "This is your custom Singularity container based on Ubuntu"
+    exec "$@"
+    exec /usr/sbin/sshd -D
+
+%startscript
+    exec /usr/sbin/sshd -D
+
+%test
+    echo "This is a test section"
+    python3 --version
+    pip freeze | grep torch

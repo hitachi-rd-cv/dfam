@@ -1,0 +1,9 @@
+_BASE_: mine.yaml
+DATASETS: 
+  TRAIN: ("grefcoco_unc_train",)
+  TEST: ("grefcoco_unc_val",)
+MODEL:
+  TXT2TXT:
+    IO: "bert_cls"
+REFERRING:
+  SAM_PICKLE_DIR: "/lustre/home/vap/k-ito/grefcoco_pickle" 

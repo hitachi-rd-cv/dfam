@@ -1,0 +1,8 @@
+_BASE_: mine.yaml
+DATASETS:
+  TRAIN: ("refcoco_unc_train",)
+  TEST: ("refcoco_unc_val",)
+MODEL:
+  CRASSIFICATION_WEIGHT_MASK: True
+REFERRING:
+  SAM_PICKLE_DIR: "/lustre/home/vap/k-ito/refcoco_pickle" 

@@ -1,0 +1,6 @@
+_BASE_: mine.yaml
+DATASETS:
+  TRAIN: ("refcoco+_unc_train",)
+  TEST: ("refcoco+_unc_val",)
+REFERRING:
+  SAM_PICKLE_DIR: "/lustre/home/vap/k-ito/refcoco+_pickle" 
