@@ -46,10 +46,11 @@ python train_net.py --config-file configs/mine.yaml --num-gpus 4 --dist-url auto
 
 # Citation
 ```bib
-@misc{kito2025dfam,
+@inproceedings{kito2025dfam,
       title={Feature Design for Bridging SAM and CLIP toward Referring Image Segmentation}, 
       author={Koichiro Ito},
       year={2025},
+      pages={8357--8367},
       booktitle={Proc. of WACV}
 }
 ```
